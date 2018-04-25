@@ -1,8 +1,8 @@
-## Overview
+# Overview
 
 This example project will build a zookeeper and node service. The node service will consume data from the zookeeper service.
 
-#£ Getting started
+## Getting started
 
 Start the services:
 
