@@ -1,0 +1,23 @@
+FROM ubuntu:16.04
+
+RUN echo foo
+
+VOLUME /usr/src/zooker
+WORKDIR /usr/src/zooker
+
+RUN apt-get update
+RUN apt-get install -y curl
+
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y default-jre curl vim nodejs build-essential
+
+RUN mkdir /usr/src/zooker-service
+
+RUN curl http://www.apache.org/dist/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz \
+  | tar -xz -C /usr/src/zooker-service/
+
+ADD zoo.cfg /usr/src/zooker-service/zookeeper-3.4.10/conf/zoo.cfg
+
+# RUN /usr/src/zooker-service/zookeeper-3.4.10/bin/zkServer.sh start
+
+CMD ['/bin/bash']

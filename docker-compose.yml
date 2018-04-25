@@ -1,0 +1,15 @@
+version: '3'
+services:
+  zookeeper:
+    image: zookeeper
+    ports:
+      - "2181:2181"
+  consumer:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/zooker
+    depends_on:
+      - zookeeper
+    network_mode: service:zookeeper
